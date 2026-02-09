@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NextAuth Authentication
 
-## Getting Started
+A full-featured authentication system built with Next.js 14 and NextAuth v5, featuring credentials-based login, OAuth providers, email verification, password reset, and two-factor authentication.
 
-First, run the development server:
+# Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Authentication Methods
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- **Credentials Authentication** - Email and password-based login with bcrypt password hashing
+- **OAuth Providers** - Sign in with GitHub and Google
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Security Features
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- **Email Verification** - Verify user emails before allowing access
+- **Two-Factor Authentication (2FA)** - Optional 2FA with email-based tokens
+- **Password Reset** - Secure password reset flow with email tokens
+- **Role-Based Access Control** - User and Admin roles for authorization
 
-## Learn More
+## Route Protection
 
-To learn more about Next.js, take a look at the following resources:
+- Middleware-based route protection
+- Public, authentication, and protected routes configuration
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+- **Framework:** Next.js 14 (App Router)
+- **Authentication:** NextAuth v5
+- **Database:** MongoDB with Prisma ORM
+- **UI:** Tailwind CSS, Radix UI components
+- **Form Validation:** React Hook Form + Zod
+- **Email Service:** Resend
+- **Language:** TypeScript
 
-## Deploy on Vercel
+# Key Features Implementation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Database Schema
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+The application uses Prisma with MongoDB and includes models for:
+
+- User authentication and profiles
+- OAuth accounts
+- Email verification tokens
+- Password reset tokens
+- Two-factor authentication tokens and confirmations
+
+## Authentication Pages
+
+- `/auth/login` - User login
+- `/auth/register` - User registration
+- `/auth/new-password` - Set new password
+- `/auth/new-verification` - Email verification
+- `/auth/reset` - Password reset request
+- `/auth/error` - Authentication errors
+
+### Protected Routes
+
+Protected routes redirect unauthenticated users to the login page and authenticated users access the settings page by default.
+
+### Email Configuration
+
+The project uses Resend for sending emails:
+
+- Email verification links
+- Password reset links
+- Two-factor authentication codes
+  inks
+- Password reset links
+- Two-factor authentication codes
